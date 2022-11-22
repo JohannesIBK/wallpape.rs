@@ -14,7 +14,8 @@ pub fn get() -> Result<String> {
         .ok_or("no '*' section found")?
         .get("wallpaper")
         .ok_or("no lxde image found")?
-        .clone())
+        .clone()
+        .to_string())
 }
 
 pub fn set(path: &str) -> Result<()> {
