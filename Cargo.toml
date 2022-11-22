@@ -1,12 +1,12 @@
 [package]
-name = "wallpaper"
-version = "3.2.0"
+name = "wallpape-rs"
+version = "1.0.0"
 edition = "2018"
 authors = ["reujab <reujab@gmail.com>", "JohannesIBK <mail@greuter.dev>"]
 description = "Gets and sets the desktop wallpaper/background."
 repository = "https://github.com/johannesibk/wallpape.rs"
 readme = "readme.md"
-keywords = ["desktop", "wallpaper", "background"]
+keywords = []
 categories = ["api-bindings"]
 license = "Unlicense"
 
