@@ -1,4 +1,5 @@
-# wallpaper [![crate](https://img.shields.io/crates/v/wallpaper.svg)](https://crates.io/crates/wallpaper) [![docs](https://docs.rs/wallpaper/badge.svg)](https://docs.rs/wallpaper)
+
+# wallpape.rs [![crate](https://img.shields.io/crates/v/wallpape-rs.svg)](https://crates.io/crates/wallpape-rs) [![docs](https://docs.rs/wallpape-rs/badge.svg)](https://docs.rs/wallpape-rs)
 
 This Rust library gets and sets the desktop wallpaper/background.
 
@@ -21,7 +22,7 @@ The supported desktops are:
 ## Examples
 
 ```rust
-use wallpaper;
+use wallpape_rs as wallpaper;
 
 fn main() {
     // Returns the wallpaper of the current desktop.
@@ -39,13 +40,13 @@ If you want to set an image as background via an URL, make sure you activated th
 
 ```toml
 [dependencies]
-wallpaper = { version = "3", features = ["from_url"] }
+wallpape-rs = { version = "1.0.0", features = ["from_url"] }
 ```
 
 Then, on your main.rs:
 
 ```rust
-use wallpaper;
+use wallpape_rs as wallpaper;
 
 fn main() {
     // Returns the wallpaper of the current desktop.
