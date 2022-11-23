@@ -43,10 +43,10 @@ mod macos;
 pub use macos::*;
 
 #[cfg(windows)]
-mod windows;
+mod win;
 
 #[cfg(windows)]
-pub use windows::*;
+pub use win::*;
 
 // unsupported
 #[cfg(not(any(unix, windows)))]
