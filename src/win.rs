@@ -1,15 +1,13 @@
-use std::borrow::Borrow;
 use crate::{Mode, Result};
 use std::ffi::{c_void, OsStr};
 use std::io;
 use std::iter;
 use std::mem;
 use std::os::windows::ffi::OsStrExt;
-use windows::core::{PCWSTR};
 use windows::w;
 use windows::Win32::UI::WindowsAndMessaging::{SPI_SETDESKWALLPAPER, SPI_GETDESKWALLPAPER, SPIF_UPDATEINIFILE, SPIF_SENDCHANGE};
 use windows::Win32::UI::WindowsAndMessaging::SystemParametersInfoW;
-use windows::Win32::System::Registry::{HKEY_CURRENT_USER, REG_SZ, REGSTR_PATH_DESKTOP, HKEY, RegSetValueW, RegCreateKeyW, REGSTR_PATH_LOOKSCHEMES, RegSetValueExW};
+use windows::Win32::System::Registry::{HKEY_CURRENT_USER, REG_SZ, REGSTR_PATH_DESKTOP, HKEY, RegCreateKeyW, RegSetValueExW};
 
 #[cfg(feature = "from_url")]
 use crate::download_image;
@@ -72,7 +70,7 @@ pub fn set_mode(mode: Mode) -> Result<()> {
     let tile_val = match mode {
         Mode::Tile => "1",
         _ => "0",
-    }.to_string().as_bytes();
+    }.to_string();
 
     let style_val = match mode {
         Mode::Center | Mode::Tile => "0",
@@ -80,13 +78,13 @@ pub fn set_mode(mode: Mode) -> Result<()> {
         Mode::Span => "22",
         Mode::Stretch => "2",
         Mode::Crop => "10",
-    }.to_string().as_bytes();
+    }.to_string();
 
     unsafe {
         let mut h_key: HKEY = Default::default();
         RegCreateKeyW(HKEY_CURRENT_USER, REGSTR_PATH_DESKTOP, &mut h_key);
-        RegSetValueExW(h_key, w!("TileWallpaper"), 0, REG_SZ, Option::from(tile_val));
-        RegSetValueExW(h_key, w!("WallpaperStyle"), 0, REG_SZ, Option::from(style_val));
+        RegSetValueExW(h_key, w!("TileWallpaper"), 0, REG_SZ, Option::from(tile_val.as_bytes()));
+        RegSetValueExW(h_key, w!("WallpaperStyle"), 0, REG_SZ, Option::from(style_val.as_bytes()));
 
         // updates wallpaper
         set_from_path(&get()?)
